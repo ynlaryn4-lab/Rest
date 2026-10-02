@@ -1,0 +1,6 @@
+{
+  "name": "DXN Registration Portal",
+  "description": "بوابة تسجيل أعضاء DXN الرسمية - نموذج تسجيل متعدد الخطوات ولوحة تحكم المشرف الآمنة",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

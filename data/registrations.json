@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1001,
+    "country": "المملكة العربية السعودية",
+    "firstName": "محمد",
+    "fatherName": "عبدالله",
+    "lastName": "الغامدي",
+    "birthDay": "14",
+    "birthMonth": "05",
+    "birthYear": "1992",
+    "gender": "ذكر",
+    "nationality": "المملكة العربية السعودية",
+    "identityNumber": "1098765432",
+    "phone": "+966 55 123 4567",
+    "email": "m.alghamdi@example.com",
+    "city": "الرياض",
+    "address": "حي النرجس، شارع عثمان بن عفان",
+    "createdAt": "2026-10-02T08:05:23.214Z",
+    "status": "جديد"
+  },
+  {
+    "id": 1002,
+    "country": "الإمارات العربية المتحدة",
+    "firstName": "سارة",
+    "fatherName": "أحمد",
+    "lastName": "المنصوري",
+    "birthDay": "22",
+    "birthMonth": "09",
+    "birthYear": "1996",
+    "gender": "أنثى",
+    "nationality": "الإمارات العربية المتحدة",
+    "identityNumber": "784-1996-1234567-1",
+    "phone": "+971 50 987 6543",
+    "email": "sara.almansoori@example.com",
+    "city": "دبي",
+    "address": "البرشاء 2، شارع الشيخ زايد",
+    "createdAt": "2026-10-01T10:05:23.214Z",
+    "status": "جديد"
+  }
+]
