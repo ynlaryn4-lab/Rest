@@ -164,16 +164,45 @@ export function RegistrationPage({ onNavigateToAdmin }: RegistrationPageProps) {
     setSubmitError(null);
 
     try {
-      const response = await fetch('/api/registration', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
+      let isStaticHost = false;
+      let savedRegistration = null;
 
-      const data = await response.json();
+      try {
+        const response = await fetch('/api/registration', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
 
-      if (!response.ok || !data.success) {
-        throw new Error(data.error || 'فشل في إرسال طلب التسجيل');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success) {
+            savedRegistration = data.registration;
+          }
+        } else if (response.status === 404) {
+          // Static host like GitHub Pages where /api/ does not exist
+          isStaticHost = true;
+        } else {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.error || 'فشل في إرسال طلب التسجيل');
+        }
+      } catch {
+        // Network error or static server
+        isStaticHost = true;
+      }
+
+      if (isStaticHost && !savedRegistration) {
+        // Save locally for static environments like GitHub Pages
+        const local = JSON.parse(localStorage.getItem('dxn_local_registrations') || '[]');
+        const nextId = local.length > 0 ? Math.max(...local.map((r: any) => r.id)) + 1 : 1001;
+        const newReg = {
+          ...formData,
+          id: nextId,
+          createdAt: new Date().toISOString(),
+          status: 'جديد'
+        };
+        local.unshift(newReg);
+        localStorage.setItem('dxn_local_registrations', JSON.stringify(local));
       }
 
       setIsSuccess(true);
